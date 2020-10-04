@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   validates_length_of :nickname, within: 3..20
   validates_uniqueness_of :nickname, case_sensitive: false
+  validates_length_of :description, maximum: 140
   validate :avatar_size
 
   protected
