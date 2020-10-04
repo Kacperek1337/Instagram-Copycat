@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :posts, -> { order(created_at: :desc) }, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
 
   validates_length_of :nickname, within: 3..20

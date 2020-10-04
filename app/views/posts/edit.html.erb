@@ -1,0 +1,29 @@
+<div class="container text-center">
+    <h1>Editing Post</h1>
+
+    <%= form_with(model: @post, local: true) do |form| %>
+    <% if @post.errors.any? %>
+        <div id="error_explanation">
+        <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+        <ul>
+            <% @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+        <%= form.text_area :description, rows: 4, class: 'form-control', placeholder: 'Description' %>
+    </div>
+
+    <%= form.submit class: 'btn btn-primary' %>
+    <% end %>
+
+    <%= button_to 'Delete Post', post_path(@post), class: 'btn btn-danger mt-1', 
+    method: :delete, data: { confirm: 'Are you sure?' } %>
+
+    <%= link_to 'Show', @post %> |
+    <%= link_to 'Back', profile_path(@post.user.nickname) %>
+</div>
