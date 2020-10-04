@@ -3,6 +3,15 @@ require_relative '../config/environment'
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
+  include Devise::Test::IntegrationHelpers
+
+  aspector do
+    before :setup do
+      @user = users(:one)
+      sign_in @user unless method_name.start_with? 'unauthorized'
+    end
+  end
+
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
 

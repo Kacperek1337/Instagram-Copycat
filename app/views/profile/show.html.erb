@@ -1,0 +1,7 @@
+<div class="container text-center">
+    <% if @user.nil? %>
+        <h1>User doesn't exist</h1>
+    <% else %>
+        <%= render 'profile' %>
+    <% end %>
+</div>

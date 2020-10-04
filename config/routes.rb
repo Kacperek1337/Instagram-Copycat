@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     get 'logout' => 'devise/sessions#destroy'
     get 'register' => 'devise/registrations#new'
   end
+
+  get 'profile/:nickname' => 'profile#show', as: 'profile'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
