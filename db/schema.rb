@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_201502) do
+ActiveRecord::Schema.define(version: 2020_10_05_185516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "hashtags_posts", id: false, force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "hashtag_id", null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "picture"

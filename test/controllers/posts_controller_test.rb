@@ -29,11 +29,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should update post" do
-  #   patch post_url(@post), params: { post: { description: @post.description, picture: @post.picture, title: @post.title } }
-  #   assert_redirected_to post_url(@post)
-  # end
-
   test "should destroy post" do
     assert_difference('Post.count', -1) do
       delete post_url(@post)
@@ -53,5 +48,12 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test "test shouldn't get edit of other's posts" do
     get edit_post_url posts(:two)
     assert_response :forbidden
+  end
+
+  test "should create hashtags" do
+    assert_difference('Hashtag.count', 2) do
+      @post.picture = @picture
+      @post.save!
+    end
   end
 end

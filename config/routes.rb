@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   get 'profile/:nickname' => 'profile#show', as: 'profile'
 
   resources :posts, except: :index
+
+  get 'hashtag/:name' => 'hashtag#show', as: 'hashtag'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
