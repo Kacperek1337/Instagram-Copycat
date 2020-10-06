@@ -6,7 +6,7 @@ Instagram-inspired social media website made with Ruby on Rails
 
 ### It's one command really
 
-Go to the project's directory and run
+Go to the project's directory and run (*with sudo if using linux*)
 
 ``docker-compose up``
 *(Keep in mind that this may take some time)*
