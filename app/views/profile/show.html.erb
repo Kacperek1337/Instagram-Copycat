@@ -1,7 +1,20 @@
 <div class="container text-center">
-    <% if @user.nil? %>
-        <h1>User doesn't exist</h1>
-    <% else %>
-        <%= render 'profile' %>
-    <% end %>
+    <div class="row">
+        <div class="col-5 text-right">
+            <%= image_tag avatar_url, class: 'rounded-circle', width: '50%', style: 'min-width: 150px;' %>
+        </div>
+        <div class="col-7 text-left">
+            <h1><%= @user.nickname %></h1>
+            <h3 class="text-secondary">Member since <%= @user.created_at.strftime '%H %B' %></h3>
+            <%= button_to 'Edit Profile', edit_user_registration_url, 
+            method: :get, class: 'btn btn-primary'  if @user == current_user %>
+            <div style="width: 80%;">
+                <h6 class="mt-2">
+                    <%= @user.description %>
+                </h6>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <%= render partial: 'shared/post', collection: @user.posts %>
 </div>
