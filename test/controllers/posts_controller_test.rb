@@ -38,7 +38,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "shouldn't destroy other's posts" do
-    assert_difference('Post.count', 0) do
+    assert_no_difference('Post.count') do
       delete post_url posts(:two)
     end
 
