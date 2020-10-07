@@ -20,4 +20,6 @@ email: test@example.com
 password: pass1234
 ```
 
-## Work in Progress...
+You may now create a post. To tag your post with hashtags put something like ``#test #hello_world`` in the description
+
+You may like posts by double clicking them
