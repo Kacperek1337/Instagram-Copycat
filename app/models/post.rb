@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
     belongs_to :user
-    has_many :likes
+    has_many :likes, dependent: :destroy
     has_and_belongs_to_many :hashtags
 
     before_create :randomize_id
