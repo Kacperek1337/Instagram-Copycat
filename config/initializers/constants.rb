@@ -1,1 +1,1 @@
-SITE_NAME = 'Instagram'.freeze
+SITE_NAME = 'Social Media'.freeze
