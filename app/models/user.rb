@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, -> { order(created_at: :desc) }, dependent: :destroy
+  has_many :likes
   mount_uploader :avatar, AvatarUploader
 
   validates_length_of :nickname, within: 3..20

@@ -8,7 +8,7 @@ class ActiveSupport::TestCase
   aspector do
     before :setup do
       @user = users(:one)
-      sign_in @user unless method_name.start_with? 'unauthorized'
+      sign_in @user unless method_name.start_with? 'test_unauthorized'
     end
   end
 

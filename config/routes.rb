@@ -15,5 +15,8 @@ Rails.application.routes.draw do
   get 'hashtag/:name' => 'hashtag#show', as: 'hashtag'
 
   get 'search' => 'search#show', as: 'search'
+
+  post 'like/create/:post_id' => 'like#create', as: 'create_like'
+  delete 'like/destroy/:post_id' => 'like#destroy', as: 'destroy_like'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

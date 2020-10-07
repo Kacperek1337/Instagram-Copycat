@@ -1,7 +1,13 @@
 <div class="container text-center mb-3">
   <h1><%= @post.title %></h1>
 
-  <%= image_tag @post.picture.url, width: '80%', style: 'min-width: 400px;' %>
+  <%= react_component 'LikeableImage', 
+  imageUrl: @post.picture.url, 
+  createLikeUrl: create_like_url(@post),
+  isLiked: is_liked?(@post),
+  destroyLikeUrl: destroy_like_url(@post),
+  csrfToken: form_authenticity_token,
+  style: { width: '80%' } %>
 
   <h5 class="mt-2">
     <% @post.description.to_s.split.each do |word| %>
