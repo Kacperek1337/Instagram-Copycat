@@ -1,6 +1,8 @@
 <div class="container text-center mb-3">
   <h1><%= @post.title %></h1>
 
+  <h2>By <%= link_to @post.user.nickname, profile_path(@post.user.nickname) %></h2>
+
   <%= react_component 'LikeableImage', 
   imageUrl: @post.picture.url, 
   createLikeUrl: create_like_url(@post),
@@ -19,6 +21,6 @@
     <% end %>
   </h5>
 
-  <%= link_to 'Edit', edit_post_path(@post) %> |
-  <%= link_to 'Back', profile_path(@post.user.nickname) %>
+  <%= button_to 'Edit', edit_post_path(@post), method: :get,
+  class: 'btn btn-lg btn-primary' if is_author?(@post) %>
 </div>

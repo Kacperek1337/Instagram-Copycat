@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :author_only, only: %i[edit update destroy]
+  helper_method :is_author?
 
   # GET /posts/1
     # GET /posts/1.json
