@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :author_only, only: %i[edit update destroy]
 
   # GET /posts/1
+    # GET /posts/1.json
   def show
   end
 
