@@ -3,6 +3,6 @@
     <a href='<%= post_path(post) %>'>
         <%= image_tag post.picture.url, width: '80%' , class: 'mb-2' %>
     </a>
-    <h5>By <%= link_to post.user.nickname, profile_path(post.user.nickname) %></h5>
+    <h5>By <%= link_to post.user.nickname, profile_path(post.user.nickname) %> | <%= pluralize post.likes.count, 'like' %></h5>
     <hr>
 </div>
