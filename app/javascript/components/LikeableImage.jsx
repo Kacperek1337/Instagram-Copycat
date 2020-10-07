@@ -1,29 +1,54 @@
 import React from "react"
 import PropTypes from "prop-types"
+import * as axios from "axios"
 
 class LikeableImage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLiked: props.isLiked
-    }
+      isLiked: props.isLiked,
+      likes: "loading likes...",
+    };
+    this.updateLikes();
   };
 
+  updateLikes = () => {
+    axios.get(window.location.href + ".json")
+    .then(response => {
+      this.setState({
+        likes: (() => {
+          const like_count = response.data.post.like_count;
+          if  (like_count == 1)
+            return `${like_count} like`;
+          else
+            return `${like_count} likes`;
+        })()
+      });
+    });
+  }
+
+  handleResponse = () => {
+    this.setState({
+      isLiked: !this.state.isLiked
+    });
+    this.updateLikes();
+  }
+
   handleDoubleClick = () => {
-    let xhr = new XMLHttpRequest()
-    xhr.addEventListener("load", () => {
-      if (xhr.status == 204)
-        this.setState({
-          isLiked: !this.state.isLiked
-        })
-    })
-    if (this.state.isLiked)
-      xhr.open("DELETE", this.props.destroyLikeUrl);
-    else
-      xhr.open("POST", this.props.createLikeUrl);
-    xhr.setRequestHeader("X-CSRF-Token", this.props.csrfToken);
-    xhr.send();
-    this.forceUpdate();
+    axios({
+      ...(this.state.isLiked ?
+        {
+          method: "DELETE",
+          url: this.props.destroyLikeUrl
+        } :
+        {
+          method: "POST",
+          url: this.props.createLikeUrl
+        }),
+      headers: {
+        "X-CSRF-Token": this.props.csrfToken
+      }
+    }).then(this.handleResponse);
   };
 
   render () {
@@ -32,7 +57,8 @@ class LikeableImage extends React.Component {
         <img onDoubleClick={this.handleDoubleClick}
         src={this.props.imageUrl}
         style={this.props.style}/>
-        <h6 class="text-secondary mt-2">{this.state.isLiked ? "You liked this post" : null}</h6>
+        <h5 class="mt-2">{this.state.likes}</h5>
+        <h6 class="text-secondary">{this.state.isLiked ? "You like this post!" : null}</h6>
       </>
     );
   }
@@ -43,7 +69,7 @@ LikeableImage.propTypes = {
   createLikeUrl: PropTypes.string,
   destroyLikeUrl: PropTypes.string,
   isLiked: PropTypes.bool,
-  crsfToken: PropTypes.string,
+  csrfToken: PropTypes.string,
   style: PropTypes.object
 };
 
