@@ -57,8 +57,8 @@ class LikeableImage extends React.Component {
         <img onDoubleClick={this.handleDoubleClick}
         src={this.props.imageUrl}
         style={this.props.style}/>
-        <h5 class="mt-2">{this.state.likes}</h5>
-        <h6 class="text-secondary">{this.state.isLiked ? "You like this post!" : null}</h6>
+        <h5 className="mt-2">{this.state.likes}</h5>
+        <h6 className="text-secondary">{this.state.isLiked ? "You like this post!" : null}</h6>
       </>
     );
   }
