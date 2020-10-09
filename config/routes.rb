@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   get 'profile/:nickname' => 'profile#show', as: 'profile'
 
-  resources :posts, except: :index
+  resources :posts, except: :index do
+    get 'comments' => 'comments#index', as: 'comments'
+    post 'comment/create' => 'comments#create', as: 'create_comment'
+    delete 'comment/delete' => 'comments#destroy', as: 'destroy_comment'
+  end
 
   get 'hashtag/:name' => 'hashtag#show', as: 'hashtag'
 

@@ -23,4 +23,19 @@
 
   <%= button_to 'Edit', edit_post_path(@post), method: :get,
   class: 'btn btn-lg btn-primary' if is_author?(@post) %>
+
+  <hr>
+
+  <div id="comments">
+    <%= render partial: 'comment', collection: @post.comments %>
+  </div>
+
+  <h2>New Comment:</h2>
+
+  <%= form_with(url: post_create_comment_url(@post), local: true) do |form| %>
+    <div class="form-group">
+      <%= form.text_field :content, placeholder: 'Content', class: 'form-control' %>
+    </div>
+    <%= form.submit class: 'btn btn-primary' %>
+  <% end %>
 </div>
