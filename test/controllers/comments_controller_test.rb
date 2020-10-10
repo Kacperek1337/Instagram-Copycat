@@ -6,8 +6,8 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     @comment = comments(:one)
   end
 
-  test "should get index" do
-    get post_comments_url(@post)
+  test "should get index api" do
+    get post_comments_url(@post) + '.json'
     assert_response :success
   end
 
@@ -21,7 +21,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test "unauthorized shouldn't destroy comment" do
     assert_no_difference('Comment.count') do
-      delete post_destroy_comment_url(@post, id: @comment)
+      delete destroy_comment_url(id: @comment)
     end
 
     assert_response :redirect
@@ -37,7 +37,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy comment" do
     assert_difference('Comment.count', -1) do
-      delete post_destroy_comment_url(@post, id: @comment)
+      delete destroy_comment_url(id: @comment)
     end
 
     assert_response :success

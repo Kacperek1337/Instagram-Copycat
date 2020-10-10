@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   resources :posts, except: :index do
     get 'comments' => 'comments#index', as: 'comments'
     post 'comment/create' => 'comments#create', as: 'create_comment'
-    delete 'comment/delete' => 'comments#destroy', as: 'destroy_comment'
   end
+
+  delete 'comment/destroy' => 'comments#destroy', as: 'destroy_comment'
 
   get 'hashtag/:name' => 'hashtag#show', as: 'hashtag'
 

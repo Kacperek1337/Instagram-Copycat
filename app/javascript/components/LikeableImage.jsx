@@ -13,7 +13,7 @@ class LikeableImage extends React.Component {
   };
 
   updateLikes = () => {
-    axios.get(window.location.href + ".json")
+    axios.get(this.props.postJsonUrl)
     .then(response => {
       this.setState({
         likes: (() => {
@@ -66,6 +66,7 @@ class LikeableImage extends React.Component {
 
 LikeableImage.propTypes = {
   imageUrl: PropTypes.string,
+  postJsonUrl: PropTypes.string,
   createLikeUrl: PropTypes.string,
   destroyLikeUrl: PropTypes.string,
   isLiked: PropTypes.bool,

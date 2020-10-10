@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
   def index
-    @comments = Comment.where(params.permit(:post_id))
+    page = params[:page].to_i
+    page = 1 if page < 1
+
+    @comments = Post.find(params[:post_id])&.comments&.offset(10 * (page - 1))&.limit(page * 10)
   end
 
   def create

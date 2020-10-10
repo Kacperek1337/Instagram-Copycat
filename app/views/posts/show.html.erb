@@ -5,6 +5,7 @@
 
   <%= react_component 'LikeableImage', 
   imageUrl: @post.picture.url, 
+  postJsonUrl: post_url(@post) + '.json',
   createLikeUrl: create_like_url(@post),
   isLiked: is_liked?(@post),
   destroyLikeUrl: destroy_like_url(@post),
@@ -26,16 +27,21 @@
 
   <hr>
 
-  <div id="comments">
-    <%= render partial: 'comment', collection: @post.comments %>
-  </div>
-
   <h2>New Comment:</h2>
 
-  <%= form_with(url: post_create_comment_url(@post), local: true) do |form| %>
+  <%= form_with(url: post_create_comment_url(@post)) do |form| %>
     <div class="form-group">
       <%= form.text_field :content, placeholder: 'Content', class: 'form-control' %>
     </div>
-    <%= form.submit class: 'btn btn-primary' %>
+    <%= form.submit class: 'btn btn-primary', value: 'Post Comment' %>
   <% end %>
+
+  <hr>
+
+  <%= react_component 'Comments',
+  commentsJsonUrl: post_comments_url(@post) + '.json',
+  csrfToken: form_authenticity_token,
+  currentUserNickname: current_user.nickname,
+  deleteCommentUrl: destroy_comment_url %>
+
 </div>
