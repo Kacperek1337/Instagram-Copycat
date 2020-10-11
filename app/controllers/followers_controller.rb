@@ -3,7 +3,7 @@ class FollowersController < ApplicationController
     @user = User.find(params[:user_id])
     @follow = current_user.follows.build(following: @user)
 
-    head :not_acceptable unless @follow.save
+    return head :not_acceptable unless @follow.save
 
     update_profile
   end
