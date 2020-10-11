@@ -9,6 +9,14 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
 
+  has_many :follows
+
+  has_many :follower_relationships, foreign_key: :following_id, class_name: 'Follow'
+  has_many :followers, through: :follower_relationships, source: :follower
+
+  has_many :following_relationships, foreign_key: :user_id, class_name: 'Follow'
+  has_many :following, through: :following_relationships, source: :following
+
   validates_length_of :nickname, within: 3..20
   validates_uniqueness_of :nickname, case_sensitive: false
   validates_length_of :description, maximum: 140

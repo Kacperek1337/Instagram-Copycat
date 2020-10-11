@@ -10,5 +10,7 @@ one:
   id: 1
 # column: value
 #
-# two: {}
-# column: value
+two:
+  nickname: test_two
+  email: test_two@example.com
+  id: 2

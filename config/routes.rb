@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   get 'profile/:nickname' => 'profile#show', as: 'profile'
 
+  post 'follow/:user_id' => 'followers#create', as: 'create_follow'
+  delete 'follow/:user_id' => 'followers#destroy', as: 'destroy_follow'
+
   resources :posts, except: :index do
     get 'comments' => 'comments#index', as: 'comments'
     post 'comment/create' => 'comments#create', as: 'create_comment'

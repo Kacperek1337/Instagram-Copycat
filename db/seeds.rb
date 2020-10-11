@@ -14,3 +14,12 @@ User.create!(
     password: 'pass1234',
     password_confirmation: 'pass1234'
 )
+10.times do |i|
+    User.create!(
+        nickname: 'Test' + i.to_s,
+        email: "test#{i}@example.com",
+        description: 'Test account',
+        password: 'pass1234',
+        password_confirmation: 'pass1234'
+    )
+end
