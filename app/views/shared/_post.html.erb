@@ -1,7 +1,7 @@
 <div class="container text-center">
     <h2><%= post.title %></h2>
     <a href='<%= post_path(post) %>'>
-        <%= image_tag post.picture.url, width: '80%', class: 'mb-2' %>
+        <%= image_tag post.picture.url, width: '60%', class: 'mb-2' %>
     </a>
     <h5>By <%= link_to post.user.nickname, profile_path(post.user.nickname) %> | <%= pluralize post.likes.count, 'like' %></h5>
     <hr>

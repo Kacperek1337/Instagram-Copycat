@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     page = params[:page].to_i
     page = 1 if page < 1
 
-    @comments = Post.find(params[:post_id])&.comments&.offset(10 * (page - 1))&.limit(page * 10)
+    @comments = Post.find(params[:post_id])&.comments&.limit(5)&.offset((page - 1) * 5)
   end
 
   def create

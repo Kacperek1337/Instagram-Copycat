@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'home#index', as: 'index'
+  get 'posts.json' => 'home#index', as: 'json_posts'
 
   devise_for :users, path: 'auth'
   devise_scope :user do
