@@ -1,6 +1,8 @@
 <%= react_component 'Post',
 postTitle: post.title,
 postUrl: post_url(post),
+likeCount: post.likes.count,
+commentCount: post.comments.count,
 imageUrl: post.picture.url,
 nickname: post.user.nickname
  %>

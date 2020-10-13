@@ -44,8 +44,11 @@ class Home extends React.Component {
         <Post
         postTitle={post.title}
         postUrl={`/posts/${post.id}`}
+        likeCount={post.like_count}
+        commentCount={post.comment_count}
         imageUrl={post.picture.url}
-        nickname={post.author}>
+        nickname={post.author}
+        key={i}>
         </Post>
       );
     });
