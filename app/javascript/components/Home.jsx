@@ -1,7 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from 'react-infinite-scroller'
 import axios from "axios"
+import Post from "./Post"
 
 class Home extends React.Component {
   constructor(props) {
@@ -40,14 +41,12 @@ class Home extends React.Component {
 
     this.state.posts.map((post, i) => {
       items.push(
-        <div key={i}>
-          <h2>{post.title}</h2>
-          <a href={`/posts/${post.id}`}>
-            <img src={post.picture.url}
-            width="60%" className="mb-2"/>
-          </a>
-          <h5>By <a href={`/profile/${post.author}`}>{post.author}</a></h5>
-        </div>
+        <Post
+        postTitle={post.title}
+        postUrl={`/posts/${post.id}`}
+        imageUrl={post.picture.url}
+        nickname={post.author}>
+        </Post>
       );
     });
 
